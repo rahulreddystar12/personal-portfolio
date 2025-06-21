@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const drawParticles = () => {
-            homeCtx.clearRect(0, 0, homeCanvas.width, homeCanvas.height); // Clear canvas
+            homeCtx.clearRect(0, 0, homeCanvas.width, homeCtx.height); // Clear canvas
 
             for (let i = 0; i < particles.length; i++) {
                 const p1 = particles[i];
