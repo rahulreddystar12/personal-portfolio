@@ -1,0 +1,1130 @@
+/* ================================= GOOGLE FONTS ================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ================================= CSS VARIABLES ================================= */
+:root {
+    --bg-color: #081b29;
+    --second-bg-color: #112e42;
+    --text-color: #ededed;
+    --main-color: #00abf0;
+    --accent-color-1: #00abf0; /* Consistent with main-color for general accents */
+    --accent-color-2: #aa00f0; /* Purple for secondary accents/gradients */
+    --transition-speed: 0.3s ease;
+    --body-font: 'Poppins', sans-serif;
+}
+
+/* ================================= BASE & RESET ================================= */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    text-decoration: none; border: none; outline: none;
+    scroll-behavior: smooth; font-family: var(--body-font);
+}
+
+html { font-size: 62.5%; overflow-x: hidden; } /* 1rem = 10px */
+body { background: var(--bg-color); color: var(--text-color); min-height: 100vh; }
+section { padding: 10rem 9% 5rem; } /* Default section padding */
+
+.heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+}
+.heading span { color: var(--main-color); }
+
+.subheading {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    max-width: 70rem;
+    margin: -2rem auto 5rem;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block; padding: 1.2rem 2.8rem;
+    background: var(--main-color); border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color); font-size: 1.6rem;
+    color: var(--bg-color); letter-spacing: .1rem;
+    font-weight: 600; transition: var(--transition-speed);
+    border: .2rem solid var(--main-color);
+}
+.btn:hover { box-shadow: none; background: transparent; color: var(--main-color); }
+
+.btn-secondary { background: transparent; color: var(--main-color); box-shadow: none; }
+.btn-secondary:hover { background: var(--main-color); color: var(--bg-color); }
+
+/* ================================= REUSABLE COMPONENTS (HEADER & FOOTER) ================================= */
+.header {
+    position: fixed; top: 0; left: 0;
+    width: 100%; padding: 2rem 9%;
+    background: transparent; display: flex;
+    justify-content: space-between; align-items: center;
+    z-index: 100; transition: background-color 0.4s ease;
+}
+.header.sticky { background: var(--bg-color); border-bottom: 1px solid var(--second-bg-color); }
+
+.logo { font-size: 2.5rem; color: var(--text-color); font-weight: 700; }
+.navbar a {
+    font-size: 1.7rem; color: var(--text-color);
+    font-weight: 500; margin-left: 3.5rem;
+    position: relative; transition: var(--transition-speed);
+}
+.navbar a::after {
+    content: ''; position: absolute; left: 0; bottom: -6px;
+    width: 100%; height: 2px; background: var(--main-color);
+    transform: scaleX(0); transition: transform .5s;
+}
+.navbar a:hover::after, .navbar a.active::after { transform: scaleX(1); }
+#menu-icon { font-size: 3.6rem; color: var(--text-color); cursor: pointer; display: none; }
+
+.footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; padding: 2rem 9%; background: var(--second-bg-color);
+}
+.footer-text p { font-size: 1.6rem; }
+.footer-icon-top a {
+    display: inline-flex; justify-content: center; align-items: center;
+    padding: .8rem; background: var(--main-color); border-radius: .8rem;
+    transition: var(--transition-speed);
+}
+.footer-icon-top a:hover { box-shadow: 0 0 1rem var(--main-color); }
+.footer-icon-top a i { font-size: 2.4rem; color: var(--bg-color); }
+
+/* ================================= HOME SECTION (in index.html) - REDESIGNED ================================= */
+.home {
+    display: flex;
+    flex-direction: row; /* Default for desktop */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh;
+    padding: 0 9%; /* Remove top/bottom padding to make it full height */
+    position: relative; /* For canvas background */
+    overflow: hidden;
+}
+
+.home-content {
+    flex: 1; /* Take available space */
+    max-width: 60rem;
+    text-align: left; /* Align text to left for content */
+    margin-right: 5rem; /* Space between content and image */
+    z-index: 1; /* Above canvas */
+}
+
+.home-content h1 {
+    font-size: 6.2rem; /* Slightly larger heading */
+    font-weight: 800; /* Bolder */
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    letter-spacing: -0.05rem; /* Tighter letter spacing */
+}
+
+.home-content .home-tagline {
+    font-size: 3.6rem; /* Larger tagline */
+    font-weight: 700;
+    color: var(--main-color);
+    margin-bottom: 2.5rem;
+    white-space: nowrap; /* Prevent breaking during typewriter effect */
+    overflow: hidden; /* Hide overflow during typewriter effect */
+    border-right: .15em solid var(--main-color); /* Cursor effect for typewriter */
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+/* Remove default typing/blink for JS controlled typewriter */
+.home-content .home-tagline.js-typing-active {
+    border-right: none;
+    animation: none;
+}
+/* Keyframe for Typewriter Cursor - only applies if JS fails/is not active */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--main-color); }
+}
+
+
+.home-content .home-bio {
+    font-size: 1.7rem; /* Slightly larger bio */
+    line-height: 1.7;
+    margin-bottom: 4rem;
+    color: rgba(237, 237, 237, 0.8); /* Softer text color */
+}
+
+.home-cta-buttons {
+    display: flex;
+    gap: 2rem; /* Increased gap between buttons */
+}
+
+.home-image-container {
+    position: relative;
+    width: 40vw; /* Larger image container */
+    height: 40vw;
+    max-width: 500px; /* Larger max size */
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden; /* Ensure glow stays within bounds */
+    z-index: 1; /* Above canvas */
+    box-shadow: 0 0 30px rgba(0, 171, 240, 0.3); /* Initial subtle shadow */
+}
+
+.home-image {
+    width: 100%; /* Fill container */
+    height: 100%; /* Fill container */
+    object-fit: cover;
+    border-radius: 50%; /* Make image circular */
+    border: .3rem solid var(--main-color); /* Thicker border */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.home-image-container:hover .home-image {
+    transform: scale(1.02); /* Slight zoom on hover */
+    box-shadow: 0 0 50px var(--main-color); /* Stronger glow on hover */
+}
+
+.home-image-container .home-image-glow {
+    position: absolute;
+    width: 105%; /* Slightly larger than image to ensure full glow */
+    height: 105%;
+    background: conic-gradient(var(--accent-color-1) 0%, var(--accent-color-2) 50%, var(--accent-color-1) 100%);
+    border-radius: 50%;
+    filter: blur(35px); /* More blur for a softer, wider glow */
+    z-index: -1; /* Behind image */
+    animation: rotateGlow 8s linear infinite; /* Slower rotation */
+    opacity: 0.7; /* More prominent glow */
+    transition: opacity 0.5s ease;
+}
+.home-image-container:hover .home-image-glow {
+    opacity: 1; /* Max glow on hover */
+    filter: blur(50px);
+}
+@keyframes rotateGlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
+/* ================================= ABOUT ME SECTION - REDESIGNED UNIQUE ================================= */
+/* Container for the new unique About Me design */
+.about-me-new-design {
+    max-width: 100rem; /* Adjusted for a tighter but still prominent block */
+    margin: 0 auto 8rem;
+    padding: 4.5rem; /* Generous padding */
+    background: var(--second-bg-color); /* Background for the whole section block */
+    border-radius: 1.5rem; /* More rounded */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    overflow: hidden; /* Important for visual elements */
+    position: relative; /* For pseudo-elements and contained flair */
+    text-align: center; /* Center text content */
+    border: 1px solid rgba(0, 171, 240, 0.15); /* Subtle border */
+    display: flex; /* Use flex to align content and visual flair */
+    flex-direction: column; /* Stack text above flair initially */
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
+}
+
+/* Abstract motion graphics elements for about section */
+.about-new-visual-flair {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with text below */
+    overflow: hidden;
+    z-index: 0; /* Behind text content */
+}
+
+.flair-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--main-color), transparent 70%);
+    filter: blur(20px);
+    opacity: 0.15; /* Very subtle */
+    animation: moveAndPulse 8s infinite ease-in-out alternate;
+}
+
+.flair-dot.dot-1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.flair-dot.dot-2 {
+    width: 90px;
+    height: 90px;
+    bottom: 15%;
+    right: 15%;
+    background: radial-gradient(circle, var(--accent-color-2), transparent 70%);
+    animation-delay: 2s;
+}
+
+.flair-dot.dot-3 {
+    width: 70px;
+    height: 70px;
+    top: 40%;
+    left: 45%;
+    animation-delay: 4s;
+}
+
+@keyframes moveAndPulse {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+    25% { transform: translate(20px, -10px) scale(1.05); opacity: 0.25; }
+    50% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+    75% { transform: translate(-15px, 10px) scale(1.03); opacity: 0.2; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+}
+
+
+.about-new-intro-text {
+    font-size: 2.2rem; /* Larger and more prominent font */
+    line-height: 1.8; /* Improved readability */
+    color: var(--text-color); /* Direct text color */
+    position: relative; /* Above flair */
+    z-index: 1;
+    font-weight: 500;
+    max-width: 90%; /* Ensure text doesn't hit edges with flair */
+}
+.about-new-intro-text strong {
+    color: var(--main-color); /* Highlight name */
+}
+
+/* ================================= JOURNEY ALTERNATING TIMELINE ================================= */
+/* (Previous styles for Journey timeline remain here) */
+.journey-alternating-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Central Vertical Line */
+.journey-alternating-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; /* Center the line */
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--main-color), var(--accent-color-2));
+    border-radius: 5px;
+    z-index: 0; /* Keep it behind the events */
+}
+
+/* Base style for individual event blocks */
+.flow-event {
+    background: var(--second-bg-color);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    width: 50%; /* Each event takes half the width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.flow-event:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--main-color);
+}
+
+/* Positioning for alternating events */
+.flow-event:nth-child(odd) {
+    left: 0;
+    text-align: right;
+    padding-right: 6rem; /* Space for the line and circle */
+    border-left-color: var(--main-color); /* Left border for odd elements */
+}
+
+.flow-event:nth-child(even) {
+    left: 50%; /* Start from the middle for even elements */
+    text-align: left;
+    padding-left: 6rem; /* Space for the line and circle */
+    border-right-color: var(--accent-color-2); /* Right border for even elements */
+}
+
+/* Event Circle (The dot on the central line) */
+.event-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-color); /* Background to match body/section */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: var(--main-color);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; /* Ensure it's above lines and cards */
+    box-shadow: 0 0 15px rgba(0, 171, 240, 0.5);
+    transition: all 0.3s ease;
+}
+
+.flow-event:nth-child(odd) .event-circle {
+    right: -30px; /* Position on the right side of odd event */
+    border: 3px solid var(--main-color);
+}
+
+.flow-event:nth-child(even) .event-circle {
+    left: -30px; /* Position on the left side of even event */
+    border: 3px solid var(--accent-color-2);
+}
+
+.flow-event:hover .event-circle {
+    transform: translateY(-50%) scale(1.1) rotate(5deg);
+    box-shadow: 0 0 25px var(--accent-color-1);
+    color: var(--accent-color-2);
+}
+
+/* Horizontal connecting lines (the "arrows") */
+.flow-event::after {
+    content: '';
+    position: absolute;
+    width: calc(50% + 30px); /* Extends from event card to the central line */
+    height: 3px;
+    background: var(--main-color); /* Color of the connecting line */
+    top: 50%;
+    transform: translateY(-50%) scaleX(0); /* Start hidden to the right/left */
+    z-index: 1; /* Below the circle, above the card */
+    transition: transform 0.6s ease-out; /* Animation for lines */
+}
+
+.flow-event:nth-child(odd)::after {
+    right: 0; /* Attach to the right side of odd event */
+    transform-origin: right;
+}
+
+.flow-event:nth-child(even)::after {
+    left: 0; /* Attach to the left side of even event */
+    transform-origin: left;
+}
+
+/* Animate lines on scroll reveal */
+.flow-event.visible::after {
+    transform: translateY(-50%) scaleX(1); /* Reveal the line */
+}
+
+
+/* Event Details */
+.event-details {
+    flex-grow: 1; /* Allow details to take up space */
+}
+
+.event-details h3 {
+    font-size: 2.3rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.event-year {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.event-description {
+    font-size: 1.6rem;
+    color: var(--ededed);
+    line-height: 1.5;
+}
+
+/* ================================= SKILLS PAGE ================================= */
+.skills-page { background: var(--second-bg-color); }
+.skills-section-container { margin-bottom: 8rem; }
+.skills-subheading { text-align: center; font-size: 3.2rem; font-weight: 700; margin-bottom: 5rem; position: relative; }
+.skills-subheading::after { content: ''; position: absolute; bottom: -1rem; left: 50%; transform: translateX(-50%); width: 100px; height: 3px; background: var(--main-color); }
+
+/* --- New Skills Grid Container for overall layout --- */
+.skills-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for desktop */
+    gap: 5rem; /* Space between columns */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- My Approach to Work / Mindset (Redesigned) --- */
+.mindset-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); /* Adjusted for density */
+    gap: 2.5rem;
+}
+
+.capability-card {
+    position: relative;
+    background: var(--bg-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+    overflow: hidden; /* Crucial for pseudo-element clipping */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: none; /* Remove default border from previous design */
+}
+
+.capability-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Animated Glowing Border (Unique & Stylish Effect) */
+.capability-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from var(--rotate-angle, 0deg), /* Custom property for animation */
+        transparent 0%,
+        transparent 30%,
+        var(--main-color) 40%,
+        var(--main-color) 50%,
+        transparent 60%,
+        transparent 100%
+    );
+    z-index: 0; /* Behind content */
+    opacity: 0.5;
+    animation: rotateBorder 4s linear infinite;
+    transform-origin: center center;
+    filter: blur(8px); /* Soft glow */
+}
+
+.capability-card:hover::before {
+    opacity: 0.8; /* Intensify glow on hover */
+    animation-play-state: running; /* Ensure animation runs on hover if paused */
+    filter: blur(12px); /* Stronger blur on hover */
+}
+
+/* Inner overlay to create the border effect (behind text, on top of glow) */
+.capability-card::after {
+    content: '';
+    position: absolute;
+    top: 2px; /* Inner padding for the "border" */
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: var(--bg-color); /* Background of the card content */
+    border-radius: calc(1rem - 2px); /* Slightly smaller border-radius than parent */
+    z-index: 1; /* Above the glowing ::before, below the content */
+    transition: background 0.3s ease;
+}
+
+/* Content needs z-index to be on top of ::after */
+.capability-card i,
+.capability-card h3,
+.capability-card p {
+    position: relative;
+    z-index: 2; /* Bring content to front */
+    color: var(--text-color);
+}
+
+.capability-card i { font-size: 7rem; color: var(--main-color); margin-bottom: 1.5rem; display: block; }
+.capability-card h3 { font-size: 2.2rem; font-weight: 600; margin-bottom: 1rem; }
+.capability-card p { font-size: 1.5rem; line-height: 1.6; }
+
+/* Keyframe for the rotating border */
+@keyframes rotateBorder {
+    from { --rotate-angle: 0deg; }
+    to { --rotate-angle: 360deg; }
+}
+
+/* --- Technical Proficiencies (Icon Grid) --- */
+.tech-skills-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* More compact grid for icons */
+    gap: 2rem;
+    justify-content: center;
+    align-items: start;
+    padding: 2rem;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tech-skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    background: var(--second-bg-color);
+    border-radius: 0.8rem;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tech-skill-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: linear-gradient(45deg, var(--second-bg-color), var(--main-color) 5%); /* Subtle gradient reveal */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tech-skill-card i {
+    font-size: 5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.tech-skill-card h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.tech-skill-card span {
+    font-size: 1.3rem;
+    color: rgba(237, 237, 237, 0.7);
+    font-weight: 400;
+}
+
+
+/* ================================= FEATURED PROJECTS SECTION (on index.html) - REDESIGNED ================================= */
+.projects-teaser {
+    background: linear-gradient(to top, var(--second-bg-color), var(--bg-color)); /* Soft gradient background */
+    padding-bottom: 10rem; /* More padding at bottom */
+}
+
+/* Dynamic Projects Container */
+.dynamic-project-teaser-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); /* Slightly larger min-width for cards */
+    gap: 4rem; /* Increased gap */
+    margin-top: 5rem;
+    position: relative; /* For loading spinner */
+    min-height: 200px; /* Ensure space for loading or content */
+}
+
+.dynamic-project-teaser-card {
+    position: relative; /* For overflow and subtle inner glow */
+    background: var(--bg-color); /* Darker background */
+    padding: 3rem; /* More padding */
+    border-radius: 1.5rem; /* More rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    border: 1px solid rgba(0, 171, 240, 0.1); /* Subtle initial border */
+    /* Animation for appearing */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+/* Delay animation for each card */
+.dynamic-project-teaser-card:nth-child(1) { animation-delay: 0.1s; }
+.dynamic-project-teaser-card:nth-child(2) { animation-delay: 0.2s; }
+.dynamic-project-teaser-card:nth-child(3) { animation-delay: 0.3s; }
+@keyframes fadeInSlideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.dynamic-project-teaser-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(0, 171, 240, 0.15), transparent 70%); /* Subtle inner light from corner */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.dynamic-project-teaser-card:hover {
+    transform: translateY(-15px); /* More pronounced lift */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Even stronger shadow */
+    border-color: var(--main-color); /* Highlight border on hover */
+}
+
+.dynamic-project-teaser-card:hover::before {
+    opacity: 1; /* Show inner glow on hover */
+}
+
+.dynamic-project-teaser-card h3 {
+    font-size: 2.4rem; /* Larger title */
+    color: var(--main-color);
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+.dynamic-project-teaser-card p {
+    font-size: 1.6rem; /* Larger description */
+    line-height: 1.7;
+    color: rgba(237, 237, 237, 0.9);
+    margin-bottom: 2rem;
+}
+
+.dynamic-project-teaser-card .tech-tags {
+    margin-top: 2rem; /* More space */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Increased gap */
+}
+.dynamic-project-teaser-card .tag {
+    font-size: 1.3rem; /* Larger tag font */
+    background: rgba(255, 255, 255, 0.15); /* Slightly more prominent tag background */
+    padding: .6rem 1.2rem; /* Larger padding */
+    border-radius: .8rem; /* More rounded tags */
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border for tags */
+}
+
+/* Loading Spinner for Projects Teaser */
+.loading-spinner {
+    border: 5px solid rgba(237, 237, 237, 0.3);
+    border-top: 5px solid var(--main-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.error-message {
+    color: #ff4d4f; /* Error red */
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+}
+
+
+/* ================================= PROJECT HUB PAGE (projects.html) ================================= */
+/* (This section remains as is, as the request was only for the teaser on index.html) */
+.project-page { background: var(--bg-color); }
+.project-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr)); gap: 3rem; }
+.project-card { background: var(--second-bg-color); border-radius: 1rem; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
+.project-image img { width: 100%; height: 20rem; object-fit: cover; display: block; }
+.project-content { padding: 2.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+.status-bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.5rem; }
+.status-tag { font-size: 1.2rem; font-weight: 600; padding: .4rem 1rem; border-radius: 2rem; flex-shrink: 0; }
+.status-completed { background-color: #28a745; color: white; }
+.status-progress { background-color: #007bff; color: white; }
+.status-concept { background-color: #6c757d; color: white; }
+.progress-track { width: 100%; height: .8rem; background: var(--bg-color); border-radius: 1rem; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--main-color); border-radius: 1rem; }
+.project-title { font-size: 2.2rem; font-weight: 700; margin-bottom: .5rem; }
+.project-desc { font-size: 1.5rem; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 2.5rem; }
+.tag { font-size: 1.2rem; background: rgba(255, 255, 255, 0.1); padding: .4rem 1rem; border-radius: .5rem; }
+.project-buttons { display: flex; gap: 1.5rem; }
+.project-buttons .btn.disabled { pointer-events: none; background: var(--second-bg-color); color: #6c757d; border-color: #6c757d; }
+
+/* ================================= CONTACT PAGE - REDESIGNED ================================= */
+.contact-page {
+    background: var(--bg-color); /* Match project teaser or blend */
+    padding: 10rem 9% 10rem; /* More generous padding */
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Contact info slightly wider than form */
+    gap: 8rem; /* More spacing between sections */
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--second-bg-color); /* Unified background for container */
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for the whole block */
+    padding: 5rem; /* Inner padding for the container */
+    overflow: hidden; /* For potential internal animations */
+    position: relative;
+    border: 1px solid rgba(0, 171, 240, 0.1);
+}
+/* Optional: Background pattern for contact page */
+.contact-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0,171,240,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(170,0,240,0.05) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.contact-info-side {
+    position: relative;
+    z-index: 1; /* Ensure content is above background pattern */
+    color: var(--text-color);
+}
+.contact-info-side h3 {
+    font-size: 3.5rem; /* Larger heading */
+    margin-bottom: 1.5rem;
+    color: var(--main-color);
+    font-weight: 700;
+}
+.contact-info-side p {
+    font-size: 2.2rem; /* Increased from 2.0rem to 2.2rem - this targets the intro paragraph */
+    line-height: 1.8; /* Increased line height for better spacing */
+    margin-bottom: 4rem;
+    color: rgba(237, 237, 237, 0.9);
+}
+
+/* New heading for Contact Details for clarity */
+.contact-details-heading {
+    font-size: 2.8rem; /* Adjusted from 2.5rem for more prominence */
+    color: var(--main-color);
+    margin-bottom: 2rem;
+    text-align: left; /* Align with other text in this column */
+    font-weight: 600; /* Make it a bit bolder */
+}
+
+.contact-details {
+    list-style: none;
+    margin-bottom: 4rem; /* More space */
+}
+.contact-details li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.5rem; /* Increased from 3rem to 3.5rem for more vertical space */
+    font-size: 2.2rem; /* Increased from 2.0rem to 2.2rem */
+    color: var(--text-color);
+    position: relative;
+    padding-left: 0.5rem;
+}
+.contact-details li i {
+    font-size: 3.8rem; /* Increased from 3.5rem to 3.8rem for larger icons */
+    color: var(--main-color);
+    margin-right: 2rem; /* More space */
+    transition: transform 0.3s ease;
+}
+.contact-details li:hover i {
+    transform: translateX(-5px) scale(1.1); /* Subtle icon animation */
+}
+/* Divider line for contact details */
+.contact-details li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position below text */
+    left: 0;
+    width: 60%; /* Half width line */
+    height: 1px;
+    background: rgba(237, 237, 237, 0.2);
+    transform-origin: left;
+    transform: scaleX(0); /* Hidden initially */
+    transition: transform 0.4s ease;
+}
+.contact-details li:hover::after {
+    transform: scaleX(1); /* Reveal line on hover */
+}
+
+
+.contact-social-media {
+    display: flex; /* Use flex for spacing */
+    gap: 1.8rem; /* Increased from 1.5rem for more space between icons */
+}
+.contact-social-media a {
+    display: inline-flex; justify-content: center; align-items: center;
+    width: 5.5rem; /* Increased from 5rem for larger touch target */
+    height: 5.5rem;
+    background: var(--bg-color);
+    border: .2rem solid var(--main-color); /* Prominent border */
+    border-radius: 50%;
+    font-size: 2.8rem; /* Increased from 2.5rem for larger icon */
+    color: var(--main-color);
+    transition: var(--transition-speed);
+    box-shadow: 0 0 10px rgba(0, 171, 240, 0.3); /* Subtle glow */
+}
+.contact-social-media a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 2rem var(--main-color); /* Stronger glow on hover */
+    transform: translateY(-5px) scale(1.1); /* Lift and slight scale */
+}
+
+/* Contact Form Side */
+.contact-form {
+    position: relative;
+    z-index: 1; /* Ensure content is above background pattern */
+    background: var(--bg-color); /* Form background */
+    padding: 3.5rem; /* Increased from 3rem for more inner padding */
+    border-radius: 1rem;
+    box-shadow: inset 0 0 10px rgba(0, 171, 240, 0.1); /* Inner shadow */
+    border: 1px solid rgba(0, 171, 240, 0.2);
+}
+
+.input-group { position: relative; margin-bottom: 4.5rem; /* Increased from 4rem for more space between inputs */ }
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 1.8rem; /* Increased from 1.7rem to 1.8rem */
+    font-size: 1.8rem; /* Increased from 1.7rem to 1.8rem */
+    color: var(--text-color);
+    background: var(--second-bg-color); /* Input field background */
+    border-radius: .8rem;
+    border: .2rem solid transparent;
+    transition: var(--transition-speed);
+    padding-top: 3.8rem; /* Increased from 3.5rem for floating label space */
+    padding-left: 1.8rem; /* Ensure padding left matches initial label left */
+    padding-right: 1.8rem; /* Maintain consistent horizontal padding */
+    padding-bottom: 1.8rem;
+}
+.input-group textarea { resize: vertical; min-height: 16rem; /* Increased from 14rem to 16rem */ }
+.input-group input:focus, .input-group textarea:focus { border-color: var(--main-color); box-shadow: 0 0 10px var(--main-color); }
+
+/* Label animation for input group */
+.input-group label {
+    position: absolute;
+    top: 50%; /* Center vertically initially */
+    left: 1.8rem; /* Adjusted start position to match input padding */
+    transform: translateY(-50%); /* Center the label vertically initially */
+    font-size: 1.6rem; /* Increased from 1.5rem for initial state */
+    color: rgba(237, 237, 237, 0.7);
+    pointer-events: none;
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
+    background: transparent; /* No background needed if it starts high */
+    padding: 0;
+    border-radius: 0;
+    white-space: nowrap; /* Prevent label text from wrapping */
+}
+/* When input is focused or has content */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:valid ~ label {
+    top: 0.9rem; /* Adjusted from 0.8rem */
+    left: 1.2rem; /* Adjusted from 1rem for small visual padding from left edge */
+    font-size: 1.4rem; /* Increased from 1.3rem when floating */
+    color: var(--main-color);
+    background: var(--bg-color); /* Make background opaque to cover input text */
+    padding: 0 0.5rem; /* Add small padding for background */
+    border-radius: 0.4rem; /* Rounded corners for background */
+    transform: translateY(0); /* Remove vertical centering when floating */
+}
+
+.form-message { font-size: 2.0rem; /* Increased from 1.8rem */ margin-top: 3rem; /* Increased from 2.5rem */ text-align: center; color: var(--main-color); font-weight: 500; }
+
+
+/* ================================= SCROLL REVEAL ANIMATION ================================= */
+.reveal-on-scroll { opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* ================================= RESPONSIVENESS ================================= */
+@media (max-width: 991px) {
+    html { font-size: 55%; }
+    .header { padding: 2rem 3%; }
+    section { padding: 10rem 3% 5rem; }
+    .footer { padding: 2rem 3%; }
+    
+    /* Journey Alternating Timeline */
+    .journey-alternating-timeline {
+        padding: 2rem 0;
+    }
+    .journey-alternating-timeline::before {
+        left: 25px; /* Shift central line for smaller screens */
+        transform: translateX(-50%); /* Re-center relative to new left for smaller screens */
+    }
+    .flow-event,
+    .flow-event:nth-child(odd),
+    .flow-event:nth-child(even) {
+        width: 100%; /* Full width for events */
+        left: 0;
+        padding-left: 6rem; /* Space for the line and circle on the left */
+        padding-right: 1.5rem;
+        text-align: left; /* All text left-aligned */
+        min-height: unset; /* Allow height to adapt */
+    }
+    .event-circle,
+    .flow-event:nth-child(odd) .event-circle,
+    .flow-event:nth-child(even) .event-circle {
+        left: 25px; /* Consistent position for circles on mobile */
+        right: auto;
+        transform: translateY(-50%) translateX(-50%); /* Center based on left edge */
+        width: 50px; /* Slightly smaller circles */
+        height: 50px;
+        font-size: 2.5rem;
+    }
+    .flow-event::after {
+        display: none; /* Hide individual horizontal lines on mobile */
+    }
+    .event-details h3 { font-size: 2rem; }
+    .event-year, .event-description { font-size: 1.4rem; }
+
+    /* Home Section Responsiveness */
+    .home {
+        flex-direction: column-reverse; /* Stack content and image */
+        text-align: center;
+        gap: 3rem; /* Space between stacked elements */
+        padding-top: 10rem; /* Add padding for header on top */
+        padding-bottom: 5rem;
+    }
+    .home-content {
+        margin-right: 0; /* Remove margin-right when stacked */
+        max-width: 100%; /* Allow content to use full width */
+    }
+    .home-content h1 { font-size: 5rem; } /* Adjust font sizes */
+    .home-content .home-tagline { font-size: 2.6rem; }
+    .home-content .home-bio { font-size: 1.6rem; }
+    .home-cta-buttons { justify-content: center; } /* Center buttons */
+    .home-image-container {
+        width: 70vw; /* Adjust image size for mobile */
+        height: 70vw;
+        margin-top: 4rem; /* Space above image */
+        margin-bottom: 2rem;
+    }
+    .home-image-container .home-image-glow {
+        filter: blur(25px); /* Less blur for mobile to save performance */
+    }
+
+    /* About Me Unique Section */
+    .about-me-new-design {
+        flex-direction: column; /* Stack visual and text content */
+        padding: 3rem;
+        gap: 3rem;
+    }
+    .about-new-visual-flair {
+        position: relative; /* Make it flow with content */
+        width: 100%;
+        height: 150px; /* Give it some space */
+        margin-bottom: 3rem; /* Space below flair */
+    }
+    .about-new-visual-flair .flair-dot {
+        position: absolute; /* Keep absolute for animation */
+        opacity: 0.1; /* Even more subtle on mobile */
+        filter: blur(15px); /* Less blur */
+    }
+    .about-new-visual-flair .dot-1 { width: 80px; height: 80px; top: 10%; left: 10%; }
+    .about-new-visual-flair .dot-2 { width: 60px; height: 60px; bottom: 15%; right: 15%; }
+    .about-new-visual-flair .dot-3 { width: 50px; height: 50px; top: 40%; left: 45%; }
+
+
+    .about-new-intro-text {
+        font-size: 1.7rem; /* Adjusted for mobile */
+        line-height: 1.7;
+        max-width: 100%; /* Use full width */
+    }
+
+
+    /* Skills Mindset Grid (for two columns) */
+    .skills-grid-container {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        gap: 6rem; /* More space between stacked sections */
+    }
+
+    /* Mindset Cards */
+    .mindset-container { grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); }
+    .capability-card i { font-size: 6rem; }
+    .capability-card h3 { font-size: 2rem; }
+    .capability-card p { font-size: 1.4rem; }
+
+    /* Technical Skills Icon Grid */
+    .tech-skills-icon-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); } /* Adjust for more columns */
+    .tech-skill-card i { font-size: 4rem; }
+    .tech-skill-card h4 { font-size: 1.4rem; }
+    .tech-skill-card span { font-size: 1.2rem; }
+
+
+    /* Project Teaser Cards */
+    .dynamic-project-teaser-container { grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); } /* Adjust min-width */
+    .dynamic-project-teaser-card { padding: 2rem; } /* Reduce padding */
+    .dynamic-project-teaser-card h3 { font-size: 2rem; }
+    .dynamic-project-teaser-card p { font-size: 1.4rem; }
+
+    /* Project Page (projects.html) */
+    .project-container { grid-template-columns: 1fr; }
+    .project-card { margin-bottom: 3rem; } /* Add some spacing when stacked */
+
+    /* Contact Page */
+    .contact-container {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 3rem;
+        padding: 3rem; /* Adjust padding for mobile */
+    }
+    .contact-info-side { text-align: center; }
+    .contact-info-side p.contact-intro { font-size: 1.8rem; margin-bottom: 2.5rem; } /* Adjusted for mobile */
+    .contact-details-heading { text-align: center; font-size: 2.5rem; margin-bottom: 1.5rem; } /* Adjust for mobile */
+    .contact-details { margin: 0 auto 3rem; } /* Center details list */
+    .contact-details li { justify-content: center; font-size: 1.8rem; margin-bottom: 2.5rem; } /* Adjusted for mobile */
+    .contact-details li i { font-size: 3rem; margin-right: 1.5rem; }
+    .contact-social-media { justify-content: center; } /* Center social icons */
+    .contact-form { padding: 2.5rem; } /* Reduce form padding */
+    .input-group label { font-size: 1.3rem; } /* Adjust label size */
+    .input-group input, .input-group textarea { font-size: 1.5rem; padding-top: 2.5rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-bottom: 1.5rem; } /* Adjust padding for smaller screens */
+    .input-group textarea { min-height: 10rem; } /* Smaller min-height for textarea */
+    .input-group label { left: 1.5rem; } /* Re-align label with new input padding */
+    .input-group input:focus ~ label, .input-group input:valid ~ label,
+    .input-group textarea:focus ~ label, .input-group textarea:valid ~ label {
+        top: 0.8rem; /* Consistent floating position */
+        font-size: 1.2rem;
+    }
+    .form-message { font-size: 1.6rem; margin-top: 2rem; }
+}
+
+@media (max-width: 768px) {
+    #menu-icon { display: block; }
+    .navbar { position: absolute; top: 100%; left: -100%; width: 100%; padding: 1rem 3%; background: var(--second-bg-color); border-top: .1rem solid rgba(0, 0, 0, .2); box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); transition: left .4s ease; }
+    .navbar.active { left: 0; }
+    .navbar a { display: block; font-size: 2rem; margin: 3rem 0; text-align: center; }
+    /* Home section already handled by 991px media query */
+
+    /* Skills Mindset */
+    .mindset-container { grid-template-columns: 1fr; } /* Stack mindset cards */
+    .capability-card { padding: 2.5rem; }
+    .capability-card i { font-size: 5rem; }
+    .capability-card h3 { font-size: 1.8rem; }
+    .capability-card p { font-size: 1.4rem; }
+
+    /* Technical Skills Icon Grid */
+    .tech-skills-icon-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); } /* Adjust for more columns */
+    .tech-skill-card i { font-size: 3.5rem; margin-bottom: 0.5rem; }
+    .tech-skill-card h4 { font-size: 1.3rem; margin-bottom: 0.2rem; }
+    .tech-skill-card span { font-size: 1.1rem; }
+    .tech-skill-card { padding: 1rem 0.5rem; } /* Reduce padding */
+
+
+    /* Project Teaser Cards */
+    .dynamic-project-teaser-container { grid-template-columns: 1fr; } /* Stack project teaser cards */
+
+    /* Contact Form Label Adjustment */
+    .input-group label {
+        font-size: 1.4rem; /* Adjust label font size */
+    }
+    .input-group input, .input-group textarea {
+        padding: 1.2rem; /* Reduce padding for smaller screens */
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 450px) {
+    html { font-size: 50%; }
+    /* Home section already handled by 991px media query */
+    .about-description { font-size: 1.8rem; } /* Keep this size on small phones */
+    .event-details h3 { font-size: 1.8rem; }
+    .event-year, .event-description { font-size: 1.3rem; }
+    .skills-subheading { font-size: 2.8rem; }
+    .capability-card i { font-size: 4.5rem; }
+    .capability-card h3 { font-size: 1.6rem; }
+    .capability-card p { font-size: 1.3rem; }
+    .project-teaser-card h3 { font-size: 1.8rem; }
+    .project-teaser-card p { font-size: 1.3rem; }
+    .tag { font-size: 1.1rem; }
+
+    /* Technical Skills Icon Grid */
+    .tech-skills-icon-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); } /* Even smaller columns for tiny screens */
+    .tech-skill-card i { font-size: 3rem; }
+    .tech-skill-card h4 { font-size: 1.1rem; }
+    .tech-skill-card span { font-size: 1rem; }
+}

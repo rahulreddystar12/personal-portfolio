@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The advanced portfolio of Adelli Rahul Reddy, a Software Analyst and Developer from Hyderabad, India, exploring the intersection of technology and creativity, featuring dynamic animations and a modern design.">
+    <meta name="author" content="Adelli Rahul Reddy">
+    <title>Adelli Rahul Reddy | Advanced Developer Portfolio</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <!-- Inline styles for initial load (optional, but can improve perceived performance) -->
+    <style>
+        /* Basic hero section background for quick load */
+        .home {
+            background-color: var(--bg-color); /* Ensure initial background */
+            position: relative;
+            overflow: hidden; /* Hide particles outside home section */
+        }
+        canvas#particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind content */
+            opacity: 0.2; /* Subtle effect */
+        }
+        .home-content, .home-image-container {
+            position: relative;
+            z-index: 1; /* Ensure content is above canvas */
+        }
+        /* Previous skills canvas container styles are removed/overwritten by style.css */
+    </style>
+</head>
+<body>
+
+    <!-- Header - Directly Embedded -->
+    <header class="header">
+        <a href="index.html" class="logo">Rahul Reddy.</a>
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about-journey">About & Journey</a>
+            <a href="#skills">Skills & Mindset</a>
+            <a href="projects.html">Projects</a> <!-- Link to separate projects.html -->
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
+
+    <main>
+        <!-- Home Section with Canvas Background for Motion Graphics -->
+        <section class="home" id="home">
+            <canvas id="particleCanvas"></canvas> <!-- Canvas for motion graphics background -->
+            <div class="home-content">
+                <h1>Adelli Rahul Reddy</h1>
+                <h2 class="home-tagline">Software Analyst & AI-Powered Developer</h2>
+                <p class="home-bio">I build intelligent solutions for complex problems, merging a background in network analysis with a passion for creative development in web and mobile.</p>
+                <div class="home-cta-buttons">
+                    <a href="Adelli_Rahul_Reddy_Resume.pdf" download class="btn">Download Resume</a>
+                    <a href="projects.html" class="btn btn-secondary">See My Projects</a> <!-- Link to separate projects.html -->
+                </div>
+            </div>
+            <div class="home-image-container reveal-on-scroll">
+                <div class="home-image-glow"></div>
+                <img src="https://i.ibb.co/L1LKVx6/IMG-20230303-WA0001.jpg" alt="A portrait of Adelli Rahul Reddy" class="home-image">
+            </div>
+        </section>
+
+        <!-- About & Journey Section - REDESIGNED About Me -->
+        <section class="about-journey-section" id="about-journey">
+            <h2 class="heading reveal-on-scroll">About <span>Me</span></h2>
+            <div class="about-me-new-design reveal-on-scroll">
+                <p class="about-new-intro-text">
+                    Hey there! I'm **Adelli Rahul Reddy**, a Software Analyst and aspiring AI-powered developer from Hyderabad, India.
+                    My journey blends a solid background in **network analysis** with a deep passion for **coding and creative problem-solving**.
+                    I'm currently focused on building intelligent solutions for web and mobile, always eager to learn and explore
+                    how technology can make a real impact. Think of me as someone who loves to connect the dots between complex systems
+                    and intuitive user experiences.
+                </p>
+                <div class="about-new-visual-flair">
+                    <span class="flair-dot dot-1"></span>
+                    <span class="flair-dot dot-2"></span>
+                    <span class="flair-dot dot-3"></span>
+                </div>
+            </div>
+            <h2 class="heading reveal-on-scroll">My <span>Journey</span></h2>
+            <p class="subheading reveal-on-scroll">
+                A chronological exploration of my academic and professional milestones, showcasing my growth and evolution.
+            </p>
+            <div class="journey-alternating-timeline">
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-graduation'></i></div>
+                    <div class="event-details"><h3>10th Grade (SSC)</h3><p class="event-year">2018</p><p class="event-description">Graduated from Tejaswi High School with a **9.2 GPA**.</p></div>
+                </div>
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-school'></i></div>
+                    <div class="event-details"><h3>Intermediate (10+2)</h3><p class="event-year">2020</p><p class="event-description">Completed MPC at Sr AVR Campus, scoring **902/1000**.</p></div>
+                </div>
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-briefcase'></i></div>
+                    <div class="event-details"><h3>Joined HCLTech</h3><p class="event-year">Nov 2022</p><p class="event-description">Began my professional journey as a **Network Support Analyst** for Olin Project.</p></div>
+                </div>
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-brain'></i></div>
+                    <div class="event-details"><h3>Began BSc @ BITS Pilani</h3><p class="event-year">Dec 2022</p><p class="event-description">Enrolled in **B.Sc in Design & Computing (WILP)**.</p></div>
+                </div>
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-up-arrow-alt'></i></div>
+                    <div class="event-details"><h3>Promotion at HCLTech</h3><p class="event-year">Sep 2024</p><p class="event-description">Promoted to **Software Analyst**, working on the Verizon Project.</p></div>
+                </div>
+                <div class="flow-event reveal-on-scroll">
+                    <div class="event-circle"><i class='bx bxs-cog'></i></div>
+                    <div class="event-details"><h3>Exploring Development & AI</h3><p class="event-year">Present</p><p class="event-description">Continuously building skills in **app/web development** and **AI-powered solutions**.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Mindset Section - REDESIGNED -->
+        <section class="skills-page" id="skills">
+            <h2 class="heading reveal-on-scroll">Skills & <span>Mindset</span></h2>
+            <p class="subheading reveal-on-scroll">
+                My abilities blend technical expertise with a strategic approach to problem-solving and continuous learning.
+            </p>
+
+            <div class="skills-grid-container">
+                <!-- My Approach to Work / Mindset (Left Column on Desktop) -->
+                <div class="skills-section-column">
+                    <h3 class="skills-subheading reveal-on-scroll">My Approach to Work</h3>
+                    <div class="mindset-container">
+                        <div class="capability-card reveal-on-scroll"><i class='bx bx-brain'></i><h3>Problem Solving</h3><p>I thrive on breaking down complex challenges into manageable steps, a skill honed through hands-on experience and a natural inclination to find effective solutions.</p></div>
+                        <div class="capability-card reveal-on-scroll"><i class='bx bxs-rocket'></i><h3>Continuous Learning</h3><p>The tech landscape evolves rapidly, and I stay ahead by actively researching new technologies, leveraging AI tools, and integrating fresh knowledge into my projects.</p></div>
+                        <div class="capability-card reveal-on-scroll"><i class='bx bx-extension'></i><h3>Resource Optimization</h3><p>I believe in working smart. I efficiently utilize available tools, frameworks, and community resources to build robust and scalable solutions in minimal time.</p></div>
+                        <div class="capability-card reveal-on-scroll"><i class='bx bx-bulb'></i><h3>Innovative Thinking</h3><p>Beyond execution, I'm passionate about ideation. I love conceptualizing novel solutions and envisioning how technology can simplify or enhance everyday experiences.</p></div>
+                    </div>
+                </div>
+
+                <!-- Technical Proficiencies (Right Column on Desktop) -->
+                <div class="skills-section-column">
+                    <h3 class="skills-subheading reveal-on-scroll">Technical Proficiencies</h3>
+                    <div class="tech-skills-icon-grid">
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-html5'></i>
+                            <h4>HTML & CSS</h4>
+                            <span>Expert</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-flutter'></i>
+                            <h4>Flutter & Dart</h4>
+                            <span>Advanced</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-javascript'></i>
+                            <h4>JavaScript</h4>
+                            <span>Proficient</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-firebase'></i>
+                            <h4>Firebase</h4>
+                            <span>Intermediate</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-git'></i>
+                            <h4>Git & Version Control</h4>
+                            <span>Advanced</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bx-bot'></i>
+                            <h4>Automation Tools</h4>
+                            <span>Proficient</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bx-bug'></i>
+                            <h4>Debugging & Testing</h4>
+                            <span>Proficient</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bx-palette'></i>
+                            <h4>UI/UX Principles</h4>
+                            <span>Intermediate</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxl-python'></i>
+                            <h4>Python</h4>
+                            <span>Proficient</span>
+                        </div>
+                        <div class="tech-skill-card reveal-on-scroll">
+                            <i class='bx bxs-server'></i>
+                            <h4>API Integration</h4>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Teaser (on index.html) - Dynamically populated now -->
+        <section class="projects-teaser teaser-section reveal-on-scroll">
+            <h2 class="heading">Featured <span>Projects</span></h2>
+            <p class="subheading">
+                Discover a selection of my impactful projects where I've applied my skills to solve real-world problems.
+                From full-stack applications to AI-driven solutions. Click below to see all my work!
+            </p>
+            <div class="dynamic-project-teaser-container" id="dynamic-project-teasers">
+                <!-- Project teasers will be dynamically loaded here by script.js -->
+                <div class="loading-spinner"></div> <!-- Optional loading indicator -->
+            </div>
+            <div class="text-center mt-8">
+                <a href="projects.html" class="btn">Browse All Projects</a>
+            </div>
+        </section>
+
+
+        <!-- Contact Section (Full Content Directly Here) -->
+        <section class="contact-page" id="contact">
+            <h2 class="heading">Contact <span>Me</span></h2>
+            <div class="contact-container">
+                <div class="contact-info-side">
+                    <!-- Moved intro paragraph here to be styled by contact-info-side p -->
+                    <p class="contact-intro">I'm always open to new opportunities, collaborations, and discussions. Feel free to reach out!</p>
+                    <h3 class="contact-details-heading">Connect with Me Directly</h3> <!-- New heading for clarity -->
+                    <ul class="contact-details">
+                        <li><i class='bx bx-phone'></i><span>+91 12345 67890</span></li>
+                        <li><i class='bx bx-envelope'></i><span>your.email@example.com</span></li>
+                        <li><i class='bx bx-map'></i><span>Hyderabad, Telangana, India</span></li>
+                    </ul>
+                    <div class="contact-social-media">
+                        <a href="https://linkedin.com/in/adellirahulreddy" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+                        <a href="https://github.com/your-github" target="_blank" title="GitHub"><i class='bx bxl-github'></i></a>
+                        <a href="mailto:your.email@example.com" title="Email"><i class='bx bx-envelope'></i></a>
+                    </div>
+                </div>
+                <form action="YOUR_FORM_SUBMISSION_ENDPOINT" method="POST" class="contact-form" id="contact-form">
+                    <div class="input-group">
+                        <input type="text" name="name" required><label>Your Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" required><label>Your Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="subject" required><label>Subject</label>
+                    </div>
+                    <div class="input-group">
+                        <textarea name="message" rows="7" required></textarea><label>Your Message</label>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                    <div class="form-message"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - Directly Embedded -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2023 Adelli Rahul Reddy | All Rights Reserved.</p>
+        </div>
+        <div class="footer-icon-top">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
