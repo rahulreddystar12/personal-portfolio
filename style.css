@@ -852,7 +852,7 @@ section { padding: 10rem 9% 5rem; } /* Default section padding */
     box-shadow: 0 0 10px rgba(0, 171, 240, 0.3); /* Subtle glow */
 }
 .contact-social-media a:hover {
-    background: var(--bg-color);
+    background: var(--main-color);
     color: var(--bg-color);
     box-shadow: 0 0 2rem var(--main-color); /* Stronger glow on hover */
     transform: translateY(-5px) scale(1.1); /* Lift and slight scale */
@@ -999,12 +999,16 @@ section { padding: 10rem 9% 5rem; } /* Default section padding */
         margin-bottom: 4rem; /* Adjusted from 5rem for smaller overall height */
         /* Changed from flex to block to simplify flow and remove flex-related space */
         display: block;
+        /* Ensure its height is determined by its content when `about-new-visual-flair` is absolute */
+        min-height: auto;
     }
     .about-new-intro-text {
         font-size: 1.7rem; /* Adjusted for mobile */
         line-height: 1.7;
         max-width: 100%; /* Use full width */
         margin-bottom: 1rem; /* Add small bottom margin to separate from flair */
+        /* Ensure text itself doesn't have extra margins */
+        margin-top: 0; /* Clear any residual top margins */
     }
     .about-new-intro-text strong {
         font-weight: 700; /* Ensure strong is still strong */
@@ -1012,23 +1016,25 @@ section { padding: 10rem 9% 5rem; } /* Default section padding */
 
     .about-new-visual-flair {
         position: absolute; /* Changed to absolute to remove from document flow */
-        top: 50%; /* Position relative to parent */
-        left: 50%;
-        transform: translate(-50%, -50%); /* Center the flair container */
+        top: 0; /* Position relative to parent */
+        left: 0;
         width: 100%;
         height: 100%; /* Cover the parent for subtle background flair */
         margin: 0; /* Remove all margins */
+        /* Flex properties here are for internal flair dots only, not influencing parent height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .about-new-visual-flair .flair-dot {
         position: absolute; /* Keep absolute for animation relative to its parent */
         opacity: 0.1; /* Keep subtle */
         filter: blur(10px); /* Adjust blur */
-        /* Adjust dot positions to be relative to the new, full-height absolute parent */
-        /* These will distribute over the entire card on mobile */
+        /* Adjusted fixed positions for distribution within the 100% height/width flair container */
     }
-    .about-new-visual-flair .dot-1 { width: 60px; height: 60px; top: 5%; left: 5%; }
-    .about-new-visual-flair .dot-2 { width: 45px; height: 45px; bottom: 5%; right: 5%; }
-    .about-new-visual-flair .dot-3 { width: 35px; height: 35px; top: 40%; left: 40%; }
+    .about-new-visual-flair .dot-1 { width: 60px; height: 60px; top: 10%; left: 10%; }
+    .about-new-visual-flair .dot-2 { width: 45px; height: 45px; bottom: 10%; right: 10%; }
+    .about-new-visual-flair .dot-3 { width: 35px; height: 35px; top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center this one */
 
 
     /* Skills Mindset Grid (for two columns) */
@@ -1093,16 +1099,16 @@ section { padding: 10rem 9% 5rem; } /* Default section padding */
 
     /* About Me Unique Section - Further Mobile Adjustments for very small screens */
     .about-me-new-design {
-        padding: 1.2rem 0.5rem; /* Even less padding */
+        padding: 1.2rem 0.8rem; /* Even less padding */
         margin-bottom: 2.5rem; /* More compact overall section */
     }
     .about-new-visual-flair {
-        height: 40px; /* Even smaller height for flair */
-        margin-top: 0.3rem; /* Less margin */
+        height: 30px; /* Even smaller height for flair to be very subtle */
+        margin-top: 0.2rem; /* Less margin */
     }
-    .about-new-visual-flair .dot-1 { width: 30px; height: 30px; }
-    .about-new-visual-flair .dot-2 { width: 25px; height: 25px; }
-    .about-new-visual-flair .dot-3 { width: 15px; height: 15px; }
+    .about-new-visual-flair .dot-1 { width: 25px; height: 25px; top: 5%; left: 5%; }
+    .about-new-visual-flair .dot-2 { width: 20px; height: 20px; bottom: 5%; right: 5%; }
+    .about-new-visual-flair .dot-3 { width: 15px; height: 15px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
     .about-new-intro-text {
         font-size: 1.3rem; /* Even smaller font */
         line-height: 1.4;
