@@ -1,10 +1,10 @@
 /**
  * Personal Portfolio Website Script
- * Version: Advanced Single-Page with Motion Graphics (Dynamic Projects & Debugs)
+ * Version: Advanced Single-Page with Motion Graphics (WhatsApp Contact & Debugs)
  * Author: Adelli Rahul Reddy & AI Assistant
  * Description: Manages responsive navigation, smooth scrolling, scroll-reveal animations,
- * dynamic radial skill chart (if re-added), typewriter effect, contact form interaction,
- * captivating particle background using HTML Canvas, and dynamically loads project teasers.
+ * typewriter effect, particle background using HTML Canvas, and dynamically loads project teasers.
+ * Contact form is now a WhatsApp redirect.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -183,8 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Check if the skills canvas container is the one becoming visible
-                // Removed skills chart logic as it's no longer the design
             } else {
                 // Optional: reset animation if scrolled out of view, and want it to re-animate on re-entry
                 // No specific reset needed for progress bars as they are removed
@@ -300,21 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriterEffect, 1000);
     }
 
-    // --- Contact Form Submission (Client-side Simulation, only on index.html contact section) ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/personal-portfolio/'))) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const messageEl = this.querySelector('.form-message');
-            if (messageEl) {
-                messageEl.textContent = 'Thank you! Your message has been sent successfully.';
-                messageEl.style.color = '#28a745';
-            }
-            this.reset();
-            setTimeout(() => { 
-                if (messageEl) messageEl.textContent = ''; 
-            }, 5000);
-        });
-    }
+    // --- Contact Form Submission (Removed as it's now a WhatsApp redirect) ---
+    // No code here, as the form no longer exists.
 
 });
